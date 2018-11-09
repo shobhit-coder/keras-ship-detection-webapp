@@ -1,6 +1,7 @@
 import os
 from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
+from testmodel import returnImagewithrectangle
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'C:\\Users\\SHOBHIT KUMAR\\Desktop\\projects\\shipDetectWebapp\\webapp\\static\\uploads\\'
