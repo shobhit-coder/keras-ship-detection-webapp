@@ -37,6 +37,7 @@ def upload_file():
 
 @app.route('/modelrun',methods = ['POST'])
 def run_model():
+    print(filepath + "filepath -------------")
     image_model = returnImagewithrectangle(filepath)
     filename = image_model.filename
     image_model.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))

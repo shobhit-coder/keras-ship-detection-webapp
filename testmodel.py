@@ -26,7 +26,7 @@ def loss_func(y_true,y_pred):
     
     return value*mean_square/1000 + check_class
 
-model=keras.models.load_model('8novtrainedmodel2.h5',custom_objects={'loss_func':loss_func})
+model=keras.models.load_model('8novtrainedmodel2.h5')
 
 # for filename in os.listdir('testpics/'):
 #     if filename.endswith(".jpg"):
