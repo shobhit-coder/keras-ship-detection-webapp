@@ -11,7 +11,7 @@ import os
 import keras
 import tensorflow as tf
 import numpy as np
-import cv2
+import cv2 
 import keras.backend as K
 import time
 
@@ -58,7 +58,7 @@ print(model.summary())
 #         cv2.imshow('frame',fr1)
 
 
-def returnImagewithrectangle(image):
+def returnImagewithrectangle(image,name):
     global cooord
     frame = cv2.imread(image)
     frame = cv2.resize(frame, (400,400))
@@ -78,9 +78,14 @@ def returnImagewithrectangle(image):
     toplefty=int(coord[1][0][1])
     bottomrightx=int(coord[1][0][2])
     bottomrighty=int(coord[1][0][3])
+
+    if(coord[0]<0.5):
+        returnvalue = 'Car was detected!!'
+    else:
+        returnvalue = 'Ship was detected!!'
     
     image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
 
-    cv2.imwrite('static/predicted/predicted.jpg',image_saved)
+    cv2.imwrite('static/predicted/predicted_'+name + '.jpg',image_saved)
 
-    return image_saved
+    return returnvalue

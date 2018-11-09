@@ -16,9 +16,10 @@ import cv2
 UPLOAD_FOLDER = 'static/uploads'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-filepath='camera.png'
+filepath='static/camera.png'
 @app.route('/')
 def welcome():
+    print("inside")
     return render_template('home.html',filepath=filepath)
 
 
@@ -29,21 +30,21 @@ def upload_file():
       global filename
       filename = secure_filename(f.filename)
       f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      global filepath
+      global filepath 
       filepath=str(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       print(filepath)
       #run CNN here and draw a rectangle on the image and also store class of object in a variable
       #i'll also add code here once u add stuff to save it onto my local sql database
-      return render_template('home.html',filepath='uploads/'+filename)
+      return render_template('home.html',filepath='static/uploads/'+filename)
 
-@app.route('/modelrun',methods = ['POST'])
+@app.route('/modelrun',methods = ['POST','GET'])
 def run_model():
     print(filepath + "filepath -------------")
-    returnImagewithrectangle(filepath)
-    return render_template('home.html',filepath='predicted/predicted.jpg')
+    value1 = returnImagewithrectangle(filepath,filename)
+    return render_template('home.html',filepath='static/predicted/predicted_'+filename+'.jpg',value = value1)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     # image = returnImagewithrectangle('static/car7.jpg')
     # print(image)
     # cv2.imwrite('static/predicted/',image)
