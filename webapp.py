@@ -3,7 +3,7 @@ from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
 from testmodel import returnImagewithrectangle
 app = Flask(__name__)
-
+import cv2
 # import mysql.connector
 # mydb = mysql.connector.connect(
 #   host="localhost",
@@ -26,6 +26,7 @@ def welcome():
 def upload_file():
    if request.method == 'POST':
       f = request.files['file']
+      global filename
       filename = secure_filename(f.filename)
       f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       global filepath
@@ -38,12 +39,12 @@ def upload_file():
 @app.route('/modelrun',methods = ['POST'])
 def run_model():
     print(filepath + "filepath -------------")
-    image_model = returnImagewithrectangle(filepath)
-    filename = image_model.filename
-    image_model.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-
-    return render_template('home.html',filepath='uploads/'+filename)
+    returnImagewithrectangle(filepath)
+    return render_template('home.html',filepath='predicted/predicted.jpg')
 
 
 if __name__ == '__main__':
-   app.run(debug = True)
+    # image = returnImagewithrectangle('static/car7.jpg')
+    # print(image)
+    # cv2.imwrite('static/predicted/',image)
+    app.run(debug = True)
