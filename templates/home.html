@@ -13,9 +13,17 @@
       <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
       <script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
       <script src = "../static/js/index.js"></script>
+      <style>
+          body{
+            background-color:lightblue;
+          }
+        
+      
+      
+      </style>
   </head>
 <body>
-    <div class="jumbotron text-center">
+    <div style="background-color:#66b3ff" class="jumbotron text-center">
         <h1>Object Detection</h1>
         <p>Upload the Image , submit and click Run model to test the model</p> 
     </div>
@@ -34,14 +42,14 @@
               <h1 id="heading">{%print(value)%}</h1>
 
               <form action = "/" method = "POST" 
-    enctype = "multipart/form-data">
-    <input type = "file" name = "file" /><br/>
-    <input type = "submit" class="btn btn-primary btn-lg"/><br/>
-  </form>
+                enctype = "multipart/form-data">
+                <input type = "file" name = "file" /><br/>
+                <input type = "submit" class="btn btn-primary btn-lg"/><br/>
+            </form>
         
-              
-    <form action = "/modelrun" method="POST">
-        <input type = "submit" value="Run model" class="btn btn-primary btn-lg"/>
+            <br/>
+            <form action = "/modelrun" method="POST">
+                <input type = "submit" value="Run model" class="btn btn-primary btn-lg"/>
     
     </form>
           </div>
