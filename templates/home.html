@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<img src="{{'static/uploads/'+filepath}}" alt="Uploaded" width="400" height="400"><br>
+<img src="{{'static/'+filepath}}" alt="Uploaded" width="400" height="400"><br>
 {%print(filepath) %}
 <!-- <form action="/action_page.php">
     <input type="file" name="pic" accept="image/*">
@@ -10,10 +9,15 @@
   </form> -->
 
 
-<form action = "http://localhost:5000/" method = "POST" 
+<form action = "/" method = "POST" 
   enctype = "multipart/form-data">
   <input type = "file" name = "file" />
   <input type = "submit"/>
+</form>
+
+<form action = "/modelrun" method="POST">
+  <input type = "submit" value="Run model"/>
+  
 </form>
 
 </body>

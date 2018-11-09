@@ -28,35 +28,35 @@ def loss_func(y_true,y_pred):
 
 model=keras.models.load_model('8novtrainedmodel2.h5',custom_objects={'loss_func':loss_func})
 
-for filename in os.listdir('testpics/'):
-    if filename.endswith(".jpg"):
-        frame = cv2.imread('testpics/'+filename)
-        frame = cv2.resize(frame, (400,400))
-        fr1 = frame
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #frame = cv2.medianBlur(frame, 3)#ksize[, dst])
-        # #cv2.imshow('Original',frame)
-        cv2.imshow('Original',frame)
-        frame = frame.reshape(1, 400, 400, 1)
-        frame=frame/255
-        coord=model.predict(frame)
-        print(coord)
-        print(coord[0])
-        topleftx=int(coord[1][0][0])
-        toplefty=int(coord[1][0][1])
-        bottomrightx=int(coord[1][0][2])
-        bottomrighty=int(coord[1][0][3])
+# for filename in os.listdir('testpics/'):
+#     if filename.endswith(".jpg"):
+#         frame = cv2.imread('testpics/'+filename)
+#         frame = cv2.resize(frame, (400,400))
+#         fr1 = frame
+#         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#         #frame = cv2.medianBlur(frame, 3)#ksize[, dst])
+#         # #cv2.imshow('Original',frame)
+#         cv2.imshow('Original',frame)
+#         frame = frame.reshape(1, 400, 400, 1)
+#         frame=frame/255
+#         coord=model.predict(frame)
+#         print(coord)
+#         print(coord[0])
+#         topleftx=int(coord[1][0][0])
+#         toplefty=int(coord[1][0][1])
+#         bottomrightx=int(coord[1][0][2])
+#         bottomrighty=int(coord[1][0][3])
         
-        image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
+#         image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
 
-        cv2.imwrite('testpics/'+'predicted'+filename,image_saved)
+#         cv2.imwrite('testpics/'+'predicted'+filename,image_saved)
 
-        cv2.imshow('frame',fr1)
+#         cv2.imshow('frame',fr1)
 
 
 def returnImagewithrectangle(image):
-
-    frame = cv2.resize(image, (400,400))
+    frame = cv2.imread(image)
+    frame = cv2.resize(frame, (400,400))
     fr1 = frame
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     #frame = cv2.medianBlur(frame, 3)#ksize[, dst])
