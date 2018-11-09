@@ -3,7 +3,7 @@ from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'C:\\Users\\SHOBHIT KUMAR\\Desktop\\opencv\\webapp\\static\\uploads\\'
+UPLOAD_FOLDER = 'C:\\Users\\SHOBHIT KUMAR\\Desktop\\projects\\shipDetectWebapp\\webapp\\static\\uploads\\'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 filepath=''
