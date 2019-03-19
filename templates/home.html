@@ -27,6 +27,8 @@
         <h1>Object Detection</h1>
         <p style = "color:black"><b>Upload the Image , submit and click Run model to test the model</b> </p> 
     </div>
+
+    
     <div class="container">
         <div class="row">
           <div class = "col-sm-5">
@@ -43,6 +45,9 @@
 
               <form action = "/" method = "POST" 
                 enctype = "multipart/form-data">
+                <input type="radio" name="radio1" value="yolo">Yolo</input>
+                <input type="radio" name="radio1" value="resnet">Resnet</input>
+                <input type="radio" name="radio1" value="ourmodel">OurModel</input>
                 <input type = "file" name = "file" /><br/>
                 <input type = "submit" class="btn btn-primary btn-lg"/><br/>
             </form>

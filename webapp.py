@@ -14,7 +14,7 @@ import cv2
 # )
 # print(mydb)
 
-
+currentmodel='none'
 UPLOAD_FOLDER = 'static/uploads'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -27,8 +27,13 @@ def welcome():
 
 @app.route('/', methods = ['GET', 'POST'])
 def upload_file():
+   global currentmodel
    if request.method == 'POST':
       f = request.files['file']
+      print(request.form)
+      print(request.form['radio1'])
+      
+      currentmodel=request.form['radio1']
       global filename
       filename = secure_filename(f.filename)
       f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -41,9 +46,13 @@ def upload_file():
 
 @app.route('/modelrun',methods = ['POST','GET'])
 def run_model():
-    print(filepath + "filepath -------------")
-    value1 = returnImagewithrectangle(filepath,filename)
-    return render_template('home.html',filepath='static/predicted/predicted_'+filename+'.jpg',value = value1)
+   print(currentmodel)
+   if currentmodel=="ourmodel":
+      print(filepath + "filepath -------------\n")
+      value1 = returnImagewithrectangle(filepath,filename)
+      return render_template('home.html',filepath='static/predicted/predicted_'+filename+'.jpg',value = value1)
+   else:
+      return 'hello'
 
 
 if __name__ == '__main__': 
