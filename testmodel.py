@@ -14,6 +14,26 @@ import numpy as np
 import cv2 
 import keras.backend as K
 import time
+# import pyodbc
+import datetime
+
+ts = time.time()
+st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
+# server = 'adroit.database.windows.net'
+# database = 'codefundo-db'
+# username = 'Adroitadmin1'
+# password = 'Adroitpassword1'
+# driver= '{ODBC Driver 17 for SQL Server}'
+# cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+# cursor = cnxn.cursor()
+
+# cursor.execute("select * from location;")
+# row = cursor.fetchone()
+# while row:
+#     print (str(row[0]) + " " + str(row[1])+" "+str(row[2]))
+#     row = cursor.fetchone()
+
 
 # def loss_func(y_true,y_pred):
 #     print(y_true)
@@ -81,11 +101,20 @@ def returnImagewithrectangle(image,name):
 
     if(coord[0]<0.5):
         returnvalue = 'Car was detected!!'
+        classname = "CAR"
     else:
         returnvalue = 'Ship was detected!!'
+        classname = "SHIP"
     
     image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
 
     cv2.imwrite('static/predicted/predicted_'+name + '.jpg',image_saved)
+
+    #inserting data into DB
+
+    # cursor.execute("insert into objdetect values (\'"+st+"\' , \'"+classname+"\',\'"+str(topleftx)+"\',\'"+str(toplefty)+"\',\'"+str(bottomrightx)+"\',\'"+str(bottomrighty)+"\');")
+    # cnxn.commit()
+
+    
 
     return returnvalue

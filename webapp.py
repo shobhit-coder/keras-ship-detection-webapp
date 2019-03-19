@@ -4,6 +4,7 @@ from werkzeug import secure_filename
 from testmodel import returnImagewithrectangle
 app = Flask(__name__)
 import cv2
+# import pyodbc
 # import mysql.connector
 # mydb = mysql.connector.connect(
 #   host="localhost",
@@ -13,6 +14,7 @@ import cv2
 # )
 # print(mydb)
 
+
 UPLOAD_FOLDER = 'static/uploads'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -20,7 +22,7 @@ filepath='static/camera.png'
 @app.route('/')
 def welcome():
     print("inside")
-    return render_template('home.html',filepath=filepath)
+    return render_template('home.html',filepath='static/camera.png')
 
 
 @app.route('/', methods = ['GET', 'POST'])
