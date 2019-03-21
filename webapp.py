@@ -1,5 +1,5 @@
 import os
-from maskrcnn.samples import codercnn
+from Mask_RCNN.samples import codercnn
 from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
 from testmodel import returnImagewithrectangle
