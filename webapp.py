@@ -1,4 +1,5 @@
 import os
+from maskrcnn.samples import codercnn
 from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
 from testmodel import returnImagewithrectangle
@@ -61,6 +62,10 @@ def run_model():
             #a1.demo(mode='static',imgfile=filepath,imgfilename=filename)
             return render_template('home.html',filepath='static/predicted/predicted_'+filename)
             #return 'hello123'
+        elif currentmodel=="maskrcnn":
+            codercnn.func(filepath,filename)
+            # return 'a'
+            return render_template('home.html',filepath='static/predicted/predicted_'+filename)
         else:
             yolo_video.runmodel(filename,filepath)
             return render_template('home.html',filepath='static/predicted/predicted_'+filename)
