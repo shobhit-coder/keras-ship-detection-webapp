@@ -13,16 +13,16 @@ from keras.models import load_model
 from keras.layers import Input
 from PIL import Image, ImageFont, ImageDraw
 
-from yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
-from yolo3.utils import letterbox_image
+from yolo1.yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
+from yolo1.yolo3.utils import letterbox_image
 import os
 from keras.utils import multi_gpu_model
 
-class YOLO(object):
+class YOLO(object): 
     _defaults = {
-        "model_path": 'model_data/yolo.h5',
-        "anchors_path": 'model_data/yolo_anchors.txt',
-        "classes_path": 'model_data/coco_classes.txt',
+        "model_path": 'yolo1/model_data/yolo.h5',
+        "anchors_path": 'yolo1/model_data/yolo_anchors.txt',
+        "classes_path": 'yolo1/model_data/coco_classes.txt',
         "score" : 0.3,
         "iou" : 0.45,
         "model_image_size" : (416, 416),
@@ -126,7 +126,7 @@ class YOLO(object):
 
         print('Found {} boxes for {}'.format(len(out_boxes), 'img'))
 
-        font = ImageFont.truetype(font='font/FiraMono-Medium.otf',
+        font = ImageFont.truetype(font='yolo1/font/FiraMono-Medium.otf',
                     size=np.floor(3e-2 * image.size[1] + 0.5).astype('int32'))
         thickness = (image.size[0] + image.size[1]) // 300
 

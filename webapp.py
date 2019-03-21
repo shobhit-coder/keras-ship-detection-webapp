@@ -2,9 +2,11 @@ import os
 from flask import Flask,redirect,url_for,request,render_template
 from werkzeug import secure_filename
 from testmodel import returnImagewithrectangle
-from resnet import app as a1
+#from resnet import app as a1
 app = Flask(__name__)
 import cv2
+from yolo1 import yolo_video
+import traceback
 # import pyodbc
 # import mysql.connector
 # mydb = mysql.connector.connect(
@@ -49,17 +51,29 @@ def upload_file():
 
 @app.route('/modelrun',methods = ['POST','GET'])
 def run_model():
-   print(currentmodel)
-   if currentmodel=="ourmodel":
-      print(filepath + "filepath -------------\n")
-      value1 = returnImagewithrectangle(filepath,filename)
-      return render_template('home.html',filepath='static/predicted/predicted_'+filename+'.jpg',value = value1)
-   elif currentmodel=="resnet":
-      a1.demo(mode='static',imgfile=filepath,imgfilename=filename)
-      return render_template('home.html',filepath='static/predicted/predicted_'+filename)
-      #return 'hello123'
-   else:
-      return 'hello'
+    print(currentmodel)
+    try:
+        if currentmodel=="ourmodel":
+            print(filepath + "filepath -------------\n")
+            value1 = returnImagewithrectangle(filepath,filename)
+            return render_template('home.html',filepath='static/predicted/predicted_'+filename+'.jpg',value = value1)
+        elif currentmodel=="resnet":
+            #a1.demo(mode='static',imgfile=filepath,imgfilename=filename)
+            return render_template('home.html',filepath='static/predicted/predicted_'+filename)
+            #return 'hello123'
+        else:
+            yolo_video.runmodel(filename,filepath)
+            return render_template('home.html',filepath='static/predicted/predicted_'+filename)
+
+    except Exception as e :
+        traceback.print_exc()
+        print(e)
+
+        print("Error occured -------")
+    
+        return("Error occured"+str(e))
+
+
 
 
 if __name__ == '__main__': 

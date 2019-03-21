@@ -40,6 +40,3 @@ def demo(mode=CAMERA_MODE,imgfile='resnet/test_images/4.jpg',imgfilename='noname
         cap.release()
         cv2.destroyAllWindows()
 
-
-# if __name__ == '__main__':
-#     demo(mode=STATIC_MODE)

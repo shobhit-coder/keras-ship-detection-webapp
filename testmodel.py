@@ -45,12 +45,10 @@ st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 #     value=K.mean(tf.boolean_mask(y_true,mask))
     
 #     return value*mean_square/1000 + check_class
+print(os.getcwd())
 
-model=keras.models.load_model('8novtrainedmodel2.h5')
 
-graph = tf.get_default_graph()
-
-print(model.summary())
+#print(model.summary())
 
 # for filename in os.listdir('testpics/'):
 #     if filename.endswith(".jpg"):
@@ -79,6 +77,9 @@ print(model.summary())
 
 
 def returnImagewithrectangle(image,name):
+    model=keras.models.load_model('8novtrainedmodel2.h5')
+
+    graph = tf.get_default_graph()
     global cooord
     frame = cv2.imread(image)
     frame = cv2.resize(frame, (400,400))
@@ -109,6 +110,7 @@ def returnImagewithrectangle(image,name):
     image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
 
     cv2.imwrite('static/predicted/predicted_'+name + '.jpg',image_saved)
+    K.clear_session()
 
     #inserting data into DB
 
