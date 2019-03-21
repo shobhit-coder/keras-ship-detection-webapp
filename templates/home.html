@@ -17,6 +17,12 @@
           body{
             background-color:lightblue;
           }
+          #image1{
+            object-fit: contain;
+            width: 400px;
+            height: 400px;
+          }
+          
         
       
       
@@ -34,7 +40,7 @@
           <div class = "col-sm-5">
               <div class = "well well-sm">
 
-                  <img id = 'image1' src="{{filepath}}"  class = 'img-rounded' alt="Could not show the image" width="400" height="400">
+                  <img id = 'image1' src="{{filepath}}"  class = 'img-rounded' alt="Could not show the image" >
                   {%print(filepath) %}
               </div>
 
