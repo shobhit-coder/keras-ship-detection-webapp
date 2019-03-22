@@ -22,6 +22,11 @@
             width: 400px;
             height: 400px;
           }
+          .myclass1{
+            align-items: baseline;
+          }
+
+          
           
         
       
@@ -31,7 +36,7 @@
 <body>
     <div style="background-color:#66b3ff" class="jumbotron text-center">
         <h1>Object Detection</h1>
-        <p style = "color:black"><b>Upload the Image , submit and click Run model to test the model</b> </p> 
+        <p style = "color:black"><b>UUpload the Image , submit and click Run model to test the model</b> </p> 
     </div>
 
     
@@ -39,25 +44,32 @@
         <div class="row">
           <div class = "col-sm-5">
               <div class = "well well-sm">
-
+                
                   <img id = 'image1' src="{{filepath}}"  class = 'img-rounded' alt="Could not show the image" >
                   {%print(filepath) %}
+                  <br/>
+                  <video controls width="320" height="240" src="{{vfilepath}}" type="video/mp4">
+                      
+                  </video>
+                  
               </div>
 
 
           </div>
-          <div class = "col-sm-5">
+          <div class = "col-sm-6">
               <h1 id="heading">{%print(value)%}</h1>
-
+              <div class="myclass1">
               <form action = "/" method = "POST" 
                 enctype = "multipart/form-data">
-                <input type="radio" name="radio1" value="yolo">Yolo</input>
-                <input type="radio" name="radio1" value="resnet">Resnet</input>
-                <input type="radio" name="radio1" value="ourmodel">OurModel</input>
-                <input type="radio" name="radio1" value="maskrcnn">Mask RCNN</input>
+                <input type="radio" name="radio1" value="yolo">Yolo</input><br/>
+                <input type="radio" name="radio1" value="resnet">Resnet</input><br/>
+                <input type="radio" name="radio1" value="ourmodel">OurModel</input><br/>
+                <input type="radio" name="radio1" value="maskrcnn">Mask RCNN</input><br/>
+                <input type="radio" name="radio1" value="videotime">Yolo Video</input><br/>
                 <input type = "file" name = "file" /><br/>
                 <input type = "submit" class="btn btn-primary btn-lg"/><br/>
             </form>
+          </div>
         
             <br/>
             <form action = "/modelrun" method="POST">

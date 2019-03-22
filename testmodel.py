@@ -77,6 +77,7 @@ print(os.getcwd())
 
 
 def returnImagewithrectangle(image,name):
+    K.clear_session()
     model=keras.models.load_model('8novtrainedmodel2.h5')
 
     graph = tf.get_default_graph()
@@ -109,7 +110,7 @@ def returnImagewithrectangle(image,name):
     
     image_saved = cv2.rectangle(fr1,(topleftx,toplefty) ,(bottomrightx,bottomrighty),100,3)
 
-    cv2.imwrite('static/predicted/predicted_'+name + '.jpg',image_saved)
+    cv2.imwrite('static/predicted/predictedourmodel_'+name + '.jpg',image_saved)
     K.clear_session()
 
     #inserting data into DB

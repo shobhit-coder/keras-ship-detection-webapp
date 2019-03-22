@@ -80,7 +80,7 @@ class Net:
                         font_color,
                         line_type)
         # cv2.imshow('img', display_img)
-        cv2.imwrite('static/predicted/predicted_'+filename,display_img)
+        cv2.imwrite('static/predicted/predictedresnet_'+filename,display_img)
         #hereeee
         # cv2.waitKey()
         # cv2.destroyAllWindows()

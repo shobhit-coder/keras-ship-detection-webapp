@@ -164,6 +164,7 @@ class YOLO(object):
 
         end = timer()
         print(end - start)
+        K.clear_session()
         return image
 
     def close_session(self):

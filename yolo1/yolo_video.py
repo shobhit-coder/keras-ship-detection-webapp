@@ -20,8 +20,9 @@ def detect_img(yolo,filename,filepath):
     else:
         r_image = yolo.detect_image(image)
         #cv2.imwrite("static/uploads/predicted/predicted_"+imgname,r_image)
-        r_image.save("static/predicted/predicted_"+imgname)
+        r_image.save("static/predicted/predictedyolo_"+imgname)
         #r_image.show()
+        
     yolo.close_session()
 
 FLAGS = None
