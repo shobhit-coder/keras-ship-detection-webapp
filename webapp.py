@@ -9,7 +9,7 @@ import cv2
 from yolo1 import yolo_video
 import traceback
 
-vfilepath='static/video.mp4'
+vfilepath='static/video1.mp4'
 currentmodel='none'
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -40,12 +40,14 @@ def upload_file():
       print(filename+'form')
       if filepath.split('.')[-1]=='mp4':
             vfilepath=filepath
+      else:
+          vfilepath='static/video.mp4'
       #run CNN here and draw a rectangle on the image and also store class of object in a variable
       #i'll also add code here once u add stuff to save it onto my local sql database
       return render_template('home.html',filepath='static/uploads/'+filename,vfilepath=vfilepath)
 
 @app.route('/modelrun',methods = ['POST','GET'])
-def run_model():
+def run_model():    
     print(currentmodel+'boooo')
     try:
         # print(filepath.split('.')[-1]+'lololol')
